@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/ProductDetailsStyles.css";
-
+import { useCart } from "../context/cart";
 const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-
+  const [cart,setCart]=useCart();
   //initalp details
   useEffect(() => {
     if (params?.slug) getProduct();
@@ -17,9 +18,7 @@ const ProductDetails = () => {
   //getProduct
   const getProduct = async () => {
     try {
-      const { data } = await axios.get(
-        `/api/v1/product/get-product/${params.slug}`
-      );
+      const { data } = await axios.get(`/api/v1/product/get-product/${params.slug}`);
       setProduct(data?.product);
       getSimilarProduct(data?.product._id, data?.product.category._id);
     } catch (error) {
@@ -40,7 +39,7 @@ const ProductDetails = () => {
   return (
     <Layout>
       <div className="row container product-details">
-        <div className="col-md-6">
+        <div className="col-md-6 ">
           <img
             src={`/api/v1/product/product-photo/${product._id}`}
             className="card-img-top"
@@ -62,7 +61,19 @@ const ProductDetails = () => {
             })}
           </h6>
           <h6>Category : {product?.category?.name}</h6>
-          <button class="btn btn-secondary ms-1">ADD TO CART</button>
+          <button
+                      className="btn btn-dark ms-1"
+                      onClick={() => {
+                        setCart([...cart, product]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, product])
+                        );
+                        toast.success("Item Added to cart");
+                      }}
+                    >
+                      ADD TO CART
+                    </button>
         </div>
       </div>
       <hr />
@@ -99,7 +110,7 @@ const ProductDetails = () => {
                   >
                     More Details
                   </button>
-                  {/* <button
+                  <button
                   className="btn btn-dark ms-1"
                   onClick={() => {
                     setCart([...cart, p]);
@@ -111,7 +122,7 @@ const ProductDetails = () => {
                   }}
                 >
                   ADD TO CART
-                </button> */}
+                </button>
                 </div>
               </div>
             </div>

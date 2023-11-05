@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
-
+import banner1 from "../images/banner1.png"
+import cover from "../images/cover1.png"
 const HomePage = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
@@ -107,14 +108,13 @@ const HomePage = () => {
     }
   };
   return (
-    <Layout title={"ALl Products - Best offers "}>
-      {/* banner image */}
-      <img
-        src="/images/banner.png"
-        className="banner-img"
-        alt="bannerimage"
-        width={"100%"}
-      />
+    <Layout title={"Shop latest Watches"}>
+     <div className="home">
+    <img className="banner" src={banner1} alt="Banner" />
+    <img className="cover" src={cover} alt="Cover Pic" />
+     </div>
+       
+
       {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">
@@ -149,7 +149,7 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-        <div className="col-md-9 ">
+        <div className="col-md-9 head ">
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
@@ -161,8 +161,9 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <div className="card-name-price">
-                    <h5 className="card-title">{p.name}</h5>
-                    <h5 className="card-title card-price">
+                    {/* <h5 className="card-title">{p.name}</h5> */}
+                    <h5 className="card-title">{p.name.length>10?p.name.slice(0,20)+'...':p.name}</h5>
+                    <h5 className=" card-price">
                       {p.price.toLocaleString("en-US", {
                         style: "currency",
                         currency: "USD",

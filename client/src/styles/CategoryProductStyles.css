@@ -34,5 +34,7 @@
 }
 
 .category .card-img-top {
-  height: 300px !important;
+  /* height: 300px !important; */
+  height: 30vh;
+  /* width: 30vw; */
 }

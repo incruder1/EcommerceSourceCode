@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import "../styles/CategoryProductStyles.css";
+import { useCart } from "../context/cart";
 import axios from "axios";
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
-
+  const [cart,setCart]=useCart();
   useEffect(() => {
     if (params?.slug) getPrductsByCat();
   }, [params?.slug]);
@@ -33,7 +35,7 @@ const CategoryProduct = () => {
           <div className="col-md-9 offset-1">
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
-                <div className="card m-2" key={p._id}>
+                <div className="card m-3" key={p._id}>
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
@@ -41,7 +43,7 @@ const CategoryProduct = () => {
                   />
                   <div className="card-body">
                     <div className="card-name-price">
-                      <h5 className="card-title">{p.name}</h5>
+                      <h5 className="card-title">{p.name.length>10?p.name.slice(0,14)+'...':p.name}</h5>
                       <h5 className="card-title card-price">
                         {p.price.toLocaleString("en-US", {
                           style: "currency",
@@ -59,7 +61,7 @@ const CategoryProduct = () => {
                       >
                         More Details
                       </button>
-                      {/* <button
+                      <button
                     className="btn btn-dark ms-1"
                     onClick={() => {
                       setCart([...cart, p]);
@@ -71,7 +73,7 @@ const CategoryProduct = () => {
                     }}
                   >
                     ADD TO CART
-                  </button> */}
+                  </button>
                     </div>
                   </div>
                 </div>

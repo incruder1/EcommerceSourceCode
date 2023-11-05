@@ -79,7 +79,7 @@ const CartPage = () => {
   };
   return (
     <Layout>
-      <div className=" cart-page">
+      <div className="cart-page">
         <div className="row">
           <div className="col-md-12">
             <h1 className="text-center bg-light p-2 mb-1">
@@ -96,9 +96,9 @@ const CartPage = () => {
             </h1>
           </div>
         </div>
-        <div className="container ">
+        <div className="container">
           <div className="row ">
-            <div className="col-md-7  p-0 m-0">
+            <div className="col-md-6  p-0 m-0">
               {cart?.map((p) => (
                 <div className="row card flex-row" key={p._id}>
                   <div className="col-md-4">
@@ -111,10 +111,10 @@ const CartPage = () => {
                     />
                   </div>
                   <div className="col-md-4">
-                    <p>{p.name}</p>
-                    <p>{p.description.substring(0, 30)}</p>
+                    <p>Name: {p.name.length>10?p.name.slice(0,15)+'...':p.name}</p>
+                    <p>Description: {p.description.length>10?p.description.slice(0,10)+'...':p.description}</p>
                     <p>Price : {p.price}</p>
-                  </div>
+                  </div> 
                   <div className="col-md-4 cart-remove-btn">
                     <button
                       className="btn btn-danger"
