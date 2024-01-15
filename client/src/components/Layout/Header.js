@@ -6,6 +6,7 @@ import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
+import { MdOutlineShoppingCart } from "react-icons/md";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -22,8 +23,11 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary  ">
         <div className="container-fluid">
+         <Link to="/" className="navbar-brand">
+              🛒 Time Zone
+            </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -36,10 +40,8 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link to="/" className="navbar-brand">
-              🛒 Time Zone
-            </Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          
+            <ul className="navbar-nav  ms-auto mx-4 mb-lg-0">
               <SearchInput />
               <li className="nav-item">
                 <NavLink to="/" className="nav-link ">
@@ -124,6 +126,7 @@ const Header = () => {
               )}
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link">
+                <MdOutlineShoppingCart />
                   <Badge count={cart?.length} showZero offset={[10, -5]}>
                     Cart
                   </Badge>

@@ -111,7 +111,9 @@ const HomePage = () => {
     <Layout title={"Shop latest Watches"}>
      <div className="home">
     <img className="banner" src={banner1} alt="Banner" />
+    <div className="">
     <img className="cover" src={cover} alt="Cover Pic" />
+    </div>
      </div>
        
 
@@ -153,7 +155,7 @@ const HomePage = () => {
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="card m-2" key={p._id}>
+              <div className="card mx-2 mt-4" key={p._id}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"

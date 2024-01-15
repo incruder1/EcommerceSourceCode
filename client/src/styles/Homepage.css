@@ -32,7 +32,36 @@
     
      
   }
+  
 }
+@media(max-width:500px){
+  .home{
+   margin-top: 0;
+    margin-right: 0;
+    height: 25vh;
+    margin-bottom: 5vh;
+    .banner {
+      
+       display:none;
+     
+     }
+    .banner {
+      visibility: hidden;
+     /* width: auto; */
+     }
+     
+    .cover{
+      max-width: 100%;
+      max-height: 100%;
+      /* margin-top: 0; */
+      size: 100%;
+      position: relative;
+       
+    }
+  }
+ 
+}
+
 .home-page h1 {
   color: gray;
   font-family: "Playfair Display", serif;
@@ -89,7 +118,7 @@
 filters
 ============== */
 .filters h4 {
-  margin-top: 100px;
+  margin-top: 10px;
   color: gray !important;
   border-bottom: 1px solid rgba(128, 128, 128, 0.337);
 }
